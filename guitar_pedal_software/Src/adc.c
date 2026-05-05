@@ -32,9 +32,6 @@ void MX_ADC1_Init(void)
 {
 
   /* USER CODE BEGIN ADC1_Init 0 */
-  // Force-reset ADC to clear any leftover state from a debug-reset.
-  // Without this, the ADC can be stuck in an active conversion state
-  // and HAL_ADC_Init will hang or fault.
   __HAL_RCC_ADC12_CLK_ENABLE();
   __HAL_RCC_ADC12_FORCE_RESET();
   __HAL_RCC_ADC12_RELEASE_RESET();
@@ -109,10 +106,6 @@ void HAL_ADC_MspInit(ADC_HandleTypeDef* adcHandle)
   /* USER CODE END ADC1_MspInit 0 */
 
   /** Initializes the peripherals clock
-  * PLL2 source is shared with PLL1 (HSI = 64MHz)
-  * PLL2: HSI(64MHz) / PLL2M(8) = 8MHz VCI input
-  *       8MHz * PLL2N(75) = 600MHz VCO (medium range)
-  *       600MHz / PLL2P(8) = 75MHz ADC clock
   */
     PeriphClkInitStruct.PeriphClockSelection = RCC_PERIPHCLK_ADC;
     PeriphClkInitStruct.PLL2.PLL2M = 8;
@@ -121,7 +114,7 @@ void HAL_ADC_MspInit(ADC_HandleTypeDef* adcHandle)
     PeriphClkInitStruct.PLL2.PLL2Q = 2;
     PeriphClkInitStruct.PLL2.PLL2R = 2;
     PeriphClkInitStruct.PLL2.PLL2RGE = RCC_PLL2VCIRANGE_3;
-    PeriphClkInitStruct.PLL2.PLL2VCOSEL = RCC_PLL2VCOWIDE;      // 600MHz VCO needs wide range (192-960MHz)
+    PeriphClkInitStruct.PLL2.PLL2VCOSEL = RCC_PLL2VCOWIDE;
     PeriphClkInitStruct.PLL2.PLL2FRACN = 0;
     PeriphClkInitStruct.AdcClockSelection = RCC_ADCCLKSOURCE_PLL2;
     if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInitStruct) != HAL_OK)

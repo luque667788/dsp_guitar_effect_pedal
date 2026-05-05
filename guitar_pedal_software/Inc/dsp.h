@@ -9,14 +9,10 @@
 extern "C" {
 #endif
 
-#define Delay 14400 // delay buffer size: 14400 samples = ~300ms at 48kHz
+#define Delay 14400
 
-
-
-// Simple example function
 void dsp_example_function(void);
 
-// DSP algorithm function
 void dsp_algorithm(uint16_t *input, uint16_t *output, int startindex, int endindex);
 
 
