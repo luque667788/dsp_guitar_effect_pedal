@@ -1,0 +1,33 @@
+# Firmware build artefacts
+guitar_pedal_software/build/
+*.o
+*.obj
+*.elf
+*.bin
+*.hex
+*.map
+*.list
+*.su
+
+# STM32CubeMX scratch / generated state
+*.scratch
+.mxproject
+
+# KiCad backups, autosaves, caches
+*-backups/
+*.kicad_sch-bak
+*.kicad_pcb-bak
+*.kicad_prl
+_autosave-*
+fp-info-cache
+
+# IDE / editor clutter
+.vscode/
+.settings/
+.clangd/
+.cache/
+compile_commands.json
+
+# OS junk
+.DS_Store
+Thumbs.db
